@@ -1,3 +1,4 @@
+import { ExecOptionsWithStringEncoding } from "child_process";
 import * as ProfileInterface from "./ProfileInterface";
 
 export class ProfileTitleImp implements ProfileInterface.ProfileTitleInterface {
@@ -49,7 +50,7 @@ export class ProfileProjectsImp
   title: string;
   description: string;
   startDate: string;
-  endDate: string | null;
+  endDate: string;
 
   constructor(
     id: number,
@@ -60,7 +61,7 @@ export class ProfileProjectsImp
     title: string,
     description: string,
     startDate: string,
-    endDate: string | null
+    endDate: string
   ) {
     this.id = id;
     this.coverImage = coverImage;
@@ -114,7 +115,7 @@ export class ProfileEducationImp
   course: string;
   description: string;
   startDate: string;
-  endDate: string | null;
+  endDate: string;
   educationInstitute: {
     id: number;
     name: string;
@@ -125,7 +126,7 @@ export class ProfileEducationImp
     course: string,
     description: string,
     startDate: string,
-    endDate: string | null,
+    endDate: string,
     educationInstitute: {
       id: number;
       name: string;

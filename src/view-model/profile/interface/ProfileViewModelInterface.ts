@@ -29,11 +29,10 @@ export interface ProfileProjectsInterface {
   title: string;
   description: string;
   startDate: string;
-  endDate: string | null;
+  endDate: string;
 }
 
 export interface ProfileExperienceInterface {
-  imgSrc: string;
   position: string;
   startDate: string;
   endDate: string;
@@ -52,10 +51,30 @@ export interface ProfileEducationInterface {
   course: string;
   description: string;
   startDate: string;
-  endDate: string | null;
+  endDate: string;
   educationInstitute: {
     id: number;
     name: string;
     logo: string;
   };
 }
+
+export interface PutTitleInterface {}
+
+export interface MakeProjectsInterface {}
+
+export interface RemoveProjectsInterface {}
+
+export interface UpdateProject {}
+
+export interface MakeExperienceInterface {}
+
+export interface RemoveExperienceInterface {}
+
+export interface UpdateExperience {}
+
+export interface MakeEducationInterface {}
+
+export interface RemoveEdcuationInterface {}
+
+export interface UpdateEducation {}

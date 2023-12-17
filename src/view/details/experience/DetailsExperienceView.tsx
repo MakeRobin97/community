@@ -8,11 +8,12 @@ import ProfileViewModel from "@/view-model/profile/class/ProfileViewModel";
 import DetailsViewLayout from "@/view/components/DetailsViewLayout";
 import { ProfileExperienceInterface } from "@/model/entity/profile/ProfileInterface";
 import ModalEdit from "@/view/components/ModalEdit";
+import * as ProfileViewModelInterface from "../../../view-model/profile/interface/ProfileViewModelInterface"
 
 const DetailsExperienceView = ({ id }: { id: number }) => {
   const router = useRouter();
-  const [titleData, setTitleData] = useState<any | null>(null);
-  const [experienceData, setExperienceData] = useState<any | null>(null);
+  const [titleData, setTitleData] = useState<ProfileViewModelInterface.ProfileTitleInterface | null>(null);
+  const [experienceData, setExperienceData] = useState<ProfileViewModelInterface.ProfileExperienceInterface[] | null>(null);
   const [change, setChange] = useState<boolean>(false);
 
   const isChange = () => {
@@ -67,7 +68,6 @@ const DetailsExperienceView = ({ id }: { id: number }) => {
             title="이력 생성"
             layout="experience_null"
             click={isChange}
-            profileId={id}
           />
         )}
 
@@ -82,7 +82,6 @@ const DetailsExperienceView = ({ id }: { id: number }) => {
                   title="이력 수정"
                   layout="experience"
                   click={isChange}
-                  profileId={id}
                   id={item.id}
                 />
               )}

@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
   });
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const [loginCheck, setLoginCheck] = useState<any>({});
+  const [loginCheck, setLoginCheck] = useState<string>('');
 
   const handleGoToSignUp = () => {
     router.push("/signup");

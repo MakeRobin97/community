@@ -1,8 +1,10 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { Axios, AxiosResponse } from "axios";
 import * as ProfileServiceInterface from "../interface/ProfileServiceInterface";
 import * as Profile from "@/model/entity/profile/Profile";
 import * as ProfileInterface from "@/model/entity/profile/ProfileInterface";
 import BASE_API from "@/model/config";
+
+
 
 export class ProfileService {
   static async getTitle(
@@ -80,7 +82,7 @@ export class ProfileService {
 
   static async getOneProject(
     id: number
-  ): Promise<ProfileInterface.ProfileProjectsInterface | null> {
+  ): Promise<ProfileInterface.ProfileProjectsInterface> {
     const response: AxiosResponse<ProfileServiceInterface.ProfileProjectsInterface> =
       await axios.get(
         `/profile/${localStorage.getItem("profileId")}/project/${id}`,
@@ -91,10 +93,6 @@ export class ProfileService {
           },
         }
       );
-
-    if (!response.data) {
-      return null;
-    }
 
     const project = response.data;
 
@@ -110,6 +108,8 @@ export class ProfileService {
 
     return result;
   }
+
+
 
   static async getExperience(
     profileId: number
@@ -140,7 +140,7 @@ export class ProfileService {
 
   static async getOneExperience(
     id: number
-  ): Promise<ProfileInterface.ProfileExperienceInterface | null> {
+  ): Promise<ProfileInterface.ProfileExperienceInterface> {
     const response: AxiosResponse<ProfileServiceInterface.ProfileExperienceInterface> =
       await axios.get(
         `/profile/${localStorage.getItem("profileId")}/experience/${id}`,
@@ -151,10 +151,6 @@ export class ProfileService {
           },
         }
       );
-
-    if (!response.data) {
-      return null;
-    }
 
     const experience = response.data;
 
@@ -200,7 +196,7 @@ export class ProfileService {
 
   static async getOneEducation(
     id: number
-  ): Promise<ProfileInterface.ProfileEducationInterface | null> {
+  ): Promise<ProfileInterface.ProfileEducationInterface> {
     const response: AxiosResponse<ProfileServiceInterface.ProfileEducationInterface> =
       await axios.get(
         `/profile/${localStorage.getItem("profileId")}/education/${id}`,
@@ -212,9 +208,6 @@ export class ProfileService {
         }
       );
 
-    if (!response.data) {
-      return null;
-    }
 
     const education = response.data;
 
@@ -231,8 +224,11 @@ export class ProfileService {
     return result;
   }
 
-  static async putTitle(userInfo: any): Promise<any> {
-    const response: AxiosResponse<any> = await axios.put(
+
+
+
+  static async putTitle(userInfo: PutTitleProps): Promise<AxiosResponse<ProfileServiceInterface.PutTitleInterface>> {
+    const response: AxiosResponse<ProfileServiceInterface.PutTitleInterface> = await axios.put(
       `/profile/${localStorage.getItem("profileId")}`,
       {
         jobDescription: userInfo.jobDescription,
@@ -251,8 +247,8 @@ export class ProfileService {
     return response;
   }
 
-  static async makeProject(userInfo: any): Promise<any> {
-    const response: AxiosResponse<any> = await axios.post(
+  static async makeProject(userInfo: MakeProjectProps): Promise<AxiosResponse<ProfileServiceInterface.MakeProjectsInterface>> {
+    const response: AxiosResponse<ProfileServiceInterface.MakeProjectsInterface> = await axios.post(
       `/profile/${localStorage.getItem("profileId")}/project`,
       {
         title: userInfo.title,
@@ -271,8 +267,8 @@ export class ProfileService {
     return response;
   }
 
-  static async removeProject(id: number): Promise<any> {
-    const response: AxiosResponse<any> = await axios.delete(
+  static async removeProject(id: number): Promise<AxiosResponse<ProfileServiceInterface.RemoveProjectsInterface>> {
+    const response: AxiosResponse<ProfileServiceInterface.RemoveProjectsInterface> = await axios.delete(
       `/profile/${localStorage.getItem("profileId")}/project/${id}`,
 
       {
@@ -285,8 +281,8 @@ export class ProfileService {
     return response;
   }
 
-  static async updateProject(userInfo: any, id: number): Promise<any> {
-    const response: AxiosResponse<any> = await axios.put(
+  static async updateProject(userInfo: UpdateProjectProps, id: number): Promise<AxiosResponse<ProfileServiceInterface.UpdateProject>> {
+    const response: AxiosResponse<ProfileServiceInterface.UpdateProject> = await axios.put(
       `/profile/${localStorage.getItem("profileId")}/project/${id}`,
       {
         title: userInfo.title,
@@ -305,8 +301,8 @@ export class ProfileService {
     return response;
   }
 
-  static async makeExperience(userInfo: any): Promise<any> {
-    const response: AxiosResponse<any> = await axios.post(
+  static async makeExperience(userInfo: MakeExperienceProps): Promise<AxiosResponse<ProfileServiceInterface.MakeExperienceInterface>> {
+    const response: AxiosResponse<ProfileServiceInterface.MakeExperienceInterface> = await axios.post(
       `/profile/${localStorage.getItem("profileId")}/experience`,
       {
         position: userInfo.position,
@@ -329,8 +325,8 @@ export class ProfileService {
     return response;
   }
 
-  static async removeExperience(id: number): Promise<any> {
-    const response: AxiosResponse<any> = await axios.delete(
+  static async removeExperience(id: number): Promise<AxiosResponse<ProfileServiceInterface.RemoveExperienceInterface>> {
+    const response: AxiosResponse<ProfileServiceInterface.RemoveExperienceInterface> = await axios.delete(
       `/profile/${localStorage.getItem("profileId")}/experience/${id}`,
 
       {
@@ -344,8 +340,8 @@ export class ProfileService {
     return response;
   }
 
-  static async updateExperience(userInfo: any, id: number): Promise<any> {
-    const response: AxiosResponse<any> = await axios.put(
+  static async updateExperience(userInfo: UpdateExperienceProps, id: number): Promise<AxiosResponse<ProfileServiceInterface.UpdateExperience>> {
+    const response: AxiosResponse<ProfileServiceInterface.UpdateExperience> = await axios.put(
       `/profile/${localStorage.getItem("profileId")}/experience/${id}`,
       {
         position: userInfo.position,
@@ -368,8 +364,8 @@ export class ProfileService {
     return response;
   }
 
-  static async makeEducation(userInfo: any): Promise<any> {
-    const response: AxiosResponse<any> = await axios.post(
+  static async makeEducation(userInfo: MakeEducationProps): Promise<AxiosResponse<ProfileServiceInterface.MakeEducationInterface>> {
+    const response: AxiosResponse<ProfileServiceInterface.MakeEducationInterface> = await axios.post(
       `/profile/${localStorage.getItem("profileId")}/education`,
       {
         course: userInfo.course,
@@ -391,8 +387,8 @@ export class ProfileService {
     return response;
   }
 
-  static async removeEducation(id: number): Promise<any> {
-    const response: AxiosResponse<any> = await axios.delete(
+  static async removeEducation(id: number): Promise<AxiosResponse<ProfileServiceInterface.RemoveEdcuationInterface>> {
+    const response: AxiosResponse<ProfileServiceInterface.RemoveEdcuationInterface> = await axios.delete(
       `/profile/${localStorage.getItem("profileId")}/education/${id}`,
 
       {
@@ -405,8 +401,8 @@ export class ProfileService {
     return response;
   }
 
-  static async updateEducation(userInfo: any, id: number): Promise<any> {
-    const response: AxiosResponse<any> = await axios.put(
+  static async updateEducation(userInfo: UpdateEducationProps, id: number): Promise<AxiosResponse<ProfileServiceInterface.UpdateEducation>> {
+    const response: AxiosResponse<ProfileServiceInterface.UpdateEducation> = await axios.put(
       `/profile/${localStorage.getItem("profileId")}/education/${id}`,
       {
         course: userInfo.course,
@@ -427,4 +423,68 @@ export class ProfileService {
     );
     return response;
   }
+}
+
+interface PutTitleProps {
+  jobDescription: string,
+  location: string,
+  address: string,
+  profileBackImage: string,
+  about: string,
+}
+
+interface MakeProjectProps {
+  image: string,
+  title: string,
+  description: string,
+  startDate: string,
+  endDate: string,
+}
+
+
+
+interface UpdateProjectProps {
+  image: string,
+  title: string,
+  description: string,
+  startDate: string,
+  endDate: string,
+}
+
+interface MakeExperienceProps {
+  position: string,
+  companyName: string,
+  location: string,
+  logoUrl: string,
+  startDate: string,
+  endDate: string,
+  description: string,
+}
+
+interface UpdateExperienceProps {
+  position: string,
+  companyName: string,
+  location: string,
+  logoUrl: string,
+  startDate: string,
+  endDate: string,
+  description: string,
+}
+
+interface MakeEducationProps {
+  name: string,
+  description: string,
+  logoUrl: string,
+  course: string,
+  startDate: string,
+  endDate: string,
+}
+
+interface UpdateEducationProps {
+  name: string,
+  description: string,
+  logoUrl: string,
+  course: string,
+  startDate: string,
+  endDate: string,
 }

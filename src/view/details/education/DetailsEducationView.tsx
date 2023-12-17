@@ -8,11 +8,12 @@ import ProfileViewModel from "@/view-model/profile/class/ProfileViewModel";
 import DetailsViewLayout from "@/view/components/DetailsViewLayout";
 import { ProfileEducationInterface } from "@/model/entity/profile/ProfileInterface";
 import ModalEdit from "@/view/components/ModalEdit";
+import * as ProfileViewModelInterface from "../../../view-model/profile/interface/ProfileViewModelInterface"
 
 const DetailsEducationView = ({ id }: { id: number }) => {
   const router = useRouter();
-  const [titleData, setTitleData] = useState<any | null>(null);
-  const [educationData, setEducationData] = useState<any | null>(null);
+  const [titleData, setTitleData] = useState<ProfileViewModelInterface.ProfileTitleInterface | null>(null);
+  const [educationData, setEducationData] = useState<ProfileViewModelInterface.ProfileEducationInterface[] | null>(null);
   const [change, setChange] = useState<boolean>(false);
 
   const isChange = () => {
@@ -67,7 +68,6 @@ const DetailsEducationView = ({ id }: { id: number }) => {
             title="교육 생성"
             layout="education_null"
             click={isChange}
-            profileId={id}
           />
         )}
 
@@ -77,13 +77,11 @@ const DetailsEducationView = ({ id }: { id: number }) => {
             <ModalPosition>
               {myProfile && (
                 <ModalEdit
-                  data={item}
                   newBtn={false}
                   deleteBtn={true}
                   title="교육 수정"
                   layout="education"
                   click={isChange}
-                  profileId={id}
                   id={item.id}
                 />
               )}
@@ -123,26 +121,6 @@ const BackIcon = styled(Image)`
   cursor: pointer;
 `;
 
-const InputBox = styled.div``;
-
-const Title = styled.div`
-  font-size: 16px;
-  margin-bottom: 15px;
-`;
-
-const InputStyle = styled.input`
-  width: 500px;
-  height: 30px;
-  border-radius: 4px;
-  border-width: 1px;
-  border-style: solid;
-  padding: 10px 16px 10px 16px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  &::placeholder {
-    color: #e0e0e0;
-  }
-`;
 
 const CareerCategory = styled.div`
   color: #181818;
@@ -226,54 +204,3 @@ const EducationCourse = styled.div`
 
 export default DetailsEducationView;
 
-const FIELD_DATA = [
-  {
-    label: "교육기관명",
-    type: "text",
-    name: "name",
-    key: "educationInstitute.name",
-    placeholder: "교육기관을 입력해주세요",
-    alt: "필수입력사항",
-  },
-  {
-    label: "세부사항 (예시 : 경영학부)",
-    type: "text",
-    name: "description",
-    key: "description",
-    placeholder: "세부사항 입력해주세요",
-    alt: "필수입력사항",
-  },
-  {
-    label: "교육기관 로고 URL",
-    type: "text",
-    name: "logoUrl",
-    key: "educationInstitute.logo",
-    placeholder: "교육기관 로고 URL을 입력해주세요.",
-    alt: "필수입력사항",
-  },
-  {
-    label: "세부 코스 (예시 : 회계직렬을 집중적으로 수료했습니다.)",
-    type: "text",
-    name: "course",
-    key: "course",
-    placeholder: "세부 코스를 입력해주세요.",
-    description: "회사로고 URL을 입력해주세요.",
-    alt: "필수입력사항",
-  },
-  {
-    label: "시작일 (예시 : 2023-11-16)",
-    type: "text",
-    name: "startDate",
-    key: "startDate",
-    placeholder: "2023-11-16 양식으로 해주세요",
-    alt: "필수입력사항",
-  },
-  {
-    label: "종료일 (예시 : 2023-11-17)",
-    type: "text",
-    name: "endDate",
-    key: "endDate",
-    placeholder: "재직중이라면 비워주셔도 됩니다.",
-    alt: "필수입력사항",
-  },
-];
