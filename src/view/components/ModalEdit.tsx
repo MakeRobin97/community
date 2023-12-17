@@ -10,10 +10,44 @@ interface ModalProps {
   deleteBtn: boolean;
   title: string;
   layout: string;
-  click?: any;
-  id?: number;
+  click: ()=>void;
+  id: number;
 }
 
+interface TitleLayout {
+  jobDescription: string;
+  location: string;
+  address: string;
+  profileBackImage: string;
+  about: string;
+}
+
+interface ProjectsLayout {
+  image: string;
+  title: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+}
+
+interface ExperienceLayout {
+  position: string;
+  companyName: string;
+  location: string;
+  logoUrl: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+}
+
+interface EducationLayout {
+  name: string;
+  description: string;
+  logoUrl: string;
+  course: string;
+  startDate: string;
+  endDate: string;
+}
 const ModalEdit: React.FC<ModalProps> = ({
   newBtn,
   deleteBtn,
@@ -23,7 +57,6 @@ const ModalEdit: React.FC<ModalProps> = ({
   id,
 }) => {
   const [modalCheck, setModalCheck] = useState<boolean>(false);
-  const [data, setData] = useState<any | null>(null);
 
   const editClick = async (ids: number) => {
     if (layout === "title") {
@@ -127,15 +160,6 @@ const ModalEdit: React.FC<ModalProps> = ({
     }
   })();
 
-  const getFieldValue = (obj: any, field: string) => {
-    const fields = field.split(".");
-    let value = obj;
-
-    for (const f of fields) {
-      value = value[f];
-    }
-    return value;
-  };
 
   const handleUserInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -147,11 +171,11 @@ const ModalEdit: React.FC<ModalProps> = ({
   switch (layout) {
     case "title":
       userInfoInitialState = {
-        jobDescription: data?.jobDescription,
-        location: data?.location,
-        address: data?.address,
-        profileBackImage: data?.profileBackImage,
-        about: data?.about,
+        jobDescription: "",
+        location: "",
+        address: "",
+        profileBackImage: "",
+        about: "",
       };
       break;
     case "title_null":
@@ -165,11 +189,11 @@ const ModalEdit: React.FC<ModalProps> = ({
       break;
     case "projects":
       userInfoInitialState = {
-        image: data?.coverImage?.image,
-        title: data?.title,
-        description: data?.description,
-        startDate: data?.startDate,
-        endDate: data?.endDate,
+        image: "",
+        title: "",
+        description: "",
+        startDate: "",
+        endDate: "",
       };
       break;
     case "projects_null":
@@ -183,13 +207,13 @@ const ModalEdit: React.FC<ModalProps> = ({
       break;
     case "experience":
       userInfoInitialState = {
-        position: data?.position,
-        companyName: data?.experienceCompany?.name,
-        location: data?.experienceCompany?.location,
-        logoUrl: data?.experienceCompany?.logo,
-        startDate: data?.startDate,
-        endDate: data?.endDate,
-        description: data?.description,
+        position: "",
+        companyName: "",
+        location: "",
+        logoUrl: "",
+        startDate: "",
+        endDate: "",
+        description: "",
       };
       break;
     case "experience_null":
@@ -205,12 +229,12 @@ const ModalEdit: React.FC<ModalProps> = ({
       break;
     case "education":
       userInfoInitialState = {
-        name: data?.educationInstitute?.name,
-        description: data?.description,
-        logoUrl: data?.educationInstitute?.logo,
-        course: data?.course,
-        startDate: data?.startDate,
-        endDate: data?.endDate,
+        name: "",
+        description: "",
+        logoUrl: "",
+        course: "",
+        startDate: "",
+        endDate: "",
       };
       break;
     case "education_null":
@@ -280,15 +304,6 @@ const ModalEdit: React.FC<ModalProps> = ({
     click();
   };
 
-  const nullLayouts = [
-    "title_null",
-    "projects_null",
-    "experience_null",
-    "education_null",
-  ];
-
-  console.log("확인", userInfo);
-
   return (
     <ModalEditStyle>
       <ModalBox active={modalCheck}>
@@ -300,7 +315,6 @@ const ModalEdit: React.FC<ModalProps> = ({
             width={40}
             height={40}
             onClick={() => {
-              setData(null);
               clickModal(false);
             }}
           />
@@ -312,11 +326,6 @@ const ModalEdit: React.FC<ModalProps> = ({
                   <Title>{label}</Title>
                   <InputStyle
                     value={userInfo[name]}
-                    // defaultValue={
-                    //   nullLayouts.includes(layout) || data == null
-                    //     ? ""
-                    //     : getFieldValue(data, key)
-                    // }
                     name={name}
                     type={type}
                     placeholder={placeholder}
@@ -738,11 +747,3 @@ const EDUCATION_MODAL_LAYOUT = [
   },
 ];
 
-interface accountCheck {
-  name: string;
-  jobDescription: string;
-  location: string;
-  address: string;
-  profileImage: string;
-  profileBackImage: string;
-}

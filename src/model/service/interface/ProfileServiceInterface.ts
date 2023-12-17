@@ -30,7 +30,7 @@ export interface ProfileProjectsInterface {
   title: string;
   description: string;
   startDate: string;
-  endDate: string | null;
+  endDate: string;
 }
 
 export interface ProfileExperienceInterface {
@@ -53,7 +53,7 @@ export interface ProfileEducationInterface {
   course: string;
   description: string;
   startDate: string;
-  endDate: string | null;
+  endDate: string;
   educationInstitute: {
     id: number;
     name: string;
@@ -61,10 +61,22 @@ export interface ProfileEducationInterface {
   };
 }
 
-// export interface PutTitleInterface {}
+export interface PutTitleInterface {}
 
-// export interface PutProjectsInterface {}
+export interface MakeProjectsInterface {}
 
-// export interface PutExperienceInterface {}
+export interface RemoveProjectsInterface {}
 
-// export interface PutEducationInterface {}
+export interface UpdateProject {}
+
+export interface MakeExperienceInterface {}
+
+export interface RemoveExperienceInterface {}
+
+export interface UpdateExperience {}
+
+export interface MakeEducationInterface {}
+
+export interface RemoveEdcuationInterface {}
+
+export interface UpdateEducation {}

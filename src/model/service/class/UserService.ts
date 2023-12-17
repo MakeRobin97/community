@@ -41,8 +41,8 @@ export class UserService {
     return response;
   }
 
-  static async CheckProfileId(): Promise<any> {
-    const response: AxiosResponse<UserServiceInterface.SignUpServiceInterface> =
+  static async CheckProfileId(): Promise<AxiosResponse<UserServiceInterface.CheckPorfileIdInterface>> {
+    const response: AxiosResponse<UserServiceInterface.CheckPorfileIdInterface> =
       await axios.get(`/profile/profileId`, {
         baseURL: `${BASE_API}`,
         headers: {
@@ -53,8 +53,8 @@ export class UserService {
     return response;
   }
 
-  static async CreateProfile(): Promise<any> {
-    const response: AxiosResponse<UserServiceInterface.SignUpServiceInterface> =
+  static async CreateProfile(): Promise<AxiosResponse<UserServiceInterface.CreateProfileInterface>> {
+    const response: AxiosResponse<UserServiceInterface.CreateProfileInterface> =
       await axios.post(
         `/profile`,
         {},

@@ -8,11 +8,12 @@ import ProfileViewModel from "@/view-model/profile/class/ProfileViewModel";
 import DetailsViewLayout from "@/view/components/DetailsViewLayout";
 import { ProfileProjectsInterface } from "@/model/entity/profile/ProfileInterface";
 import ModalEdit from "@/view/components/ModalEdit";
+import * as ProfileViewModelInterface from "../../../view-model/profile/interface/ProfileViewModelInterface"
 
 const DetailsProjectsView = ({ id }: { id: number }) => {
   const router = useRouter();
-  const [titleData, setTitleData] = useState<any | null>(null);
-  const [projectsData, setProjectsData] = useState<any | null>(null);
+  const [titleData, setTitleData] = useState<ProfileViewModelInterface.ProfileTitleInterface | null>(null);
+  const [projectsData, setProjectsData] = useState<ProfileViewModelInterface.ProfileProjectsInterface[] | null>(null);
   const [change, setChange] = useState<boolean>(false);
 
   const isChange = () => {

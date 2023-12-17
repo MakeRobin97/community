@@ -38,7 +38,7 @@ export class ProfileViewModel {
 
   static getOneProjectData(
     id: number
-  ): Promise<ProfileViewModelInterface.ProfileProjectsInterface[]> {
+  ): Promise<ProfileViewModelInterface.ProfileProjectsInterface> {
     try {
       const response = ProfileService.getOneProject(id);
       return response;
@@ -62,7 +62,7 @@ export class ProfileViewModel {
 
   static getOneProfileExperience(
     id: number
-  ): Promise<ProfileViewModelInterface.ProfileExperienceInterface[]> {
+  ): Promise<ProfileViewModelInterface.ProfileExperienceInterface> {
     try {
       const response = ProfileService.getOneExperience(id);
       return response;
@@ -86,7 +86,7 @@ export class ProfileViewModel {
 
   static getOneProfileEducation(
     id: number
-  ): Promise<ProfileViewModelInterface.ProfileEducationInterface[]> {
+  ): Promise<ProfileViewModelInterface.ProfileEducationInterface> {
     try {
       const response = ProfileService.getOneEducation(id);
       return response;
@@ -96,7 +96,7 @@ export class ProfileViewModel {
     }
   }
 
-  static putProfileTitle(userInfo: any): Promise<any> {
+  static putProfileTitle(userInfo: PutTitleProps): Promise<ProfileViewModelInterface.PutTitleInterface> {
     try {
       const response = ProfileService.putTitle(userInfo);
       return response;
@@ -106,7 +106,7 @@ export class ProfileViewModel {
     }
   }
 
-  static makeProject(userInfo: any): Promise<number> {
+  static makeProject(userInfo: MakeProjectProps): Promise<ProfileViewModelInterface.MakeProjectsInterface> {
     try {
       const response = ProfileService.makeProject(userInfo);
       return response;
@@ -116,7 +116,7 @@ export class ProfileViewModel {
     }
   }
 
-  static removeProject(id: number): Promise<number> {
+  static removeProject(id: number): Promise<ProfileViewModelInterface.RemoveProjectsInterface> {
     try {
       const response = ProfileService.removeProject(id);
       return response;
@@ -126,7 +126,7 @@ export class ProfileViewModel {
     }
   }
 
-  static updateProject(userInfo: any, id: number): Promise<number> {
+  static updateProject(userInfo: UpdateProjectProps, id: number): Promise<ProfileViewModelInterface.UpdateProject> {
     try {
       const response = ProfileService.updateProject(userInfo, id);
       return response;
@@ -138,7 +138,7 @@ export class ProfileViewModel {
 
   ///////////////////
 
-  static makeExperience(userInfo: any): Promise<number> {
+  static makeExperience(userInfo: MakeExperienceProps): Promise<ProfileViewModelInterface.MakeExperienceInterface> {
     try {
       const response = ProfileService.makeExperience(userInfo);
       return response;
@@ -148,7 +148,7 @@ export class ProfileViewModel {
     }
   }
 
-  static removeExperience(id: number): Promise<number> {
+  static removeExperience(id: number): Promise<ProfileViewModelInterface.RemoveExperienceInterface> {
     try {
       const response = ProfileService.removeExperience(id);
       return response;
@@ -158,7 +158,7 @@ export class ProfileViewModel {
     }
   }
 
-  static updateExperience(userInfo: any, id: number): Promise<number> {
+  static updateExperience(userInfo: UpdateExperienceProps, id: number): Promise<ProfileViewModelInterface.UpdateExperience> {
     try {
       const response = ProfileService.updateExperience(userInfo, id);
       return response;
@@ -170,7 +170,7 @@ export class ProfileViewModel {
 
   ////////////////
 
-  static makeEducation(userInfo: any): Promise<number> {
+  static makeEducation(userInfo: MakeEducationProps): Promise<ProfileViewModelInterface.MakeEducationInterface> {
     try {
       const response = ProfileService.makeEducation(userInfo);
       return response;
@@ -180,7 +180,7 @@ export class ProfileViewModel {
     }
   }
 
-  static removeEducation(id: number): Promise<number> {
+  static removeEducation(id: number): Promise<ProfileViewModelInterface.RemoveEdcuationInterface> {
     try {
       const response = ProfileService.removeEducation(id);
       return response;
@@ -190,7 +190,7 @@ export class ProfileViewModel {
     }
   }
 
-  static updateEducation(userInfo: any, id: number): Promise<number> {
+  static updateEducation(userInfo: UpdateEducationProps, id: number): Promise<ProfileViewModelInterface.UpdateEducation> {
     try {
       const response = ProfileService.updateEducation(userInfo, id);
       return response;
@@ -202,3 +202,69 @@ export class ProfileViewModel {
 }
 
 export default ProfileViewModel;
+
+interface PutTitleProps {
+  jobDescription: string,
+  location: string,
+  address: string,
+  profileBackImage: string,
+  about: string,
+}
+
+interface MakeProjectProps {
+  image: string,
+  title: string,
+  description: string,
+  startDate: string,
+  endDate: string,
+}
+
+interface UpdateProjectProps {
+  image: string,
+  title: string,
+  description: string,
+  startDate: string,
+  endDate: string,
+}
+
+interface MakeExperienceProps {
+  position: string,
+  companyName: string,
+  location: string,
+  logoUrl: string,
+  startDate: string,
+  endDate: string,
+  description: string,
+}
+
+
+
+interface UpdateExperienceProps {
+  position: string,
+  companyName: string,
+  location: string,
+  logoUrl: string,
+  startDate: string,
+  endDate: string,
+  description: string,
+}
+
+interface MakeEducationProps {
+  name: string,
+  description: string,
+  logoUrl: string,
+  course: string,
+  startDate: string,
+  endDate: string,
+}
+
+
+
+interface UpdateEducationProps {
+  name: string,
+  description: string,
+  logoUrl: string,
+  course: string,
+  startDate: string,
+  endDate: string,
+}

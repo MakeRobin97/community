@@ -1,13 +1,10 @@
 "use Client";
 
 import styled from "styled-components";
-import { useState } from "react";
-import ModalEdit from "@/view/components/ModalEdit";
-import ProfileViewModel from "@/view-model/profile/class/ProfileViewModel";
-import { userInfo } from "os";
+import * as ProfileViewModelInterface from "../../../view-model/profile/interface/ProfileViewModelInterface"
 
 const ProfileTitleView: React.FC<{
-  data: any;
+  data: ProfileViewModelInterface.ProfileTitleInterface;
 }> = ({ data }) => {
   return (
     <ProfileTitleStyle>

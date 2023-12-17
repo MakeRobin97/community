@@ -22,11 +22,10 @@ export interface ProfileProjectsInterface {
   title: string;
   description: string;
   startDate: string;
-  endDate: string | null;
+  endDate: string;
 }
 
 export interface ProfileExperienceInterface {
-  imgSrc: string;
   position: string;
   startDate: string;
   endDate: string;
@@ -45,7 +44,7 @@ export interface ProfileEducationInterface {
   course: string;
   description: string;
   startDate: string;
-  endDate: string | null;
+  endDate: string;
   educationInstitute: {
     id: number;
     name: string;

@@ -10,12 +10,14 @@ import ProfileProjectsView from "./components/ProfileProjectsView";
 import ProfileDashBoardView from "./components/ProfileDashBoardView";
 import ProfileVisitorsView from "./components/ProfileVisitorsView";
 import ModalEdit from "../components/ModalEdit";
+import * as ProfileViewModelInterface from "../../view-model/profile/interface/ProfileViewModelInterface"
+
 
 const ProfileView = ({ id }: { id: number }) => {
-  const [titleData, setTitleData] = useState<any | null>(null);
-  const [projectsData, setProjectsData] = useState<any | null>(null);
-  const [experienceData, setExperienceData] = useState<any | null>(null);
-  const [educationData, setEducationData] = useState<any | null>(null);
+  const [titleData, setTitleData] = useState<ProfileViewModelInterface.ProfileTitleInterface | null>(null);
+  const [projectsData, setProjectsData] = useState<ProfileViewModelInterface.ProfileProjectsInterface | null>(null);
+  const [experienceData, setExperienceData] = useState<ProfileViewModelInterface.ProfileExperienceInterface | null>(null);
+  const [educationData, setEducationData] = useState<ProfileViewModelInterface.ProfileEducationInterface | null>(null);
   const [change, setChange] = useState<boolean>(false);
 
   const isChange = () => {
